@@ -1,13 +1,18 @@
+// Import necessary modules
 const express = require("express");
 const axios = require("axios");
 const cheerio = require("cheerio");
+
+// Initialize the Express app
 const app = express();
 const port = 4005;
 
+// Set EJS as the view engine
 app.set("view engine", "ejs");
 app.set("views", "./views");
 app.use(express.static("public"));
 
+// Define the route for scraping and rendering data
 app.get("/", async (req, res) => {
   const amazonURL =
     "https://www.amazon.in/gp/browse.html?node=4092115031&ref_=nav_em_sbc_tvelec_gaming_consoles_0_2_9_12";
@@ -32,7 +37,7 @@ app.get("/", async (req, res) => {
       }
     );
 
-    // Log the extracted data
+    // Log the extracted items
     console.log(items);
 
     // Render the data to the view
@@ -43,6 +48,7 @@ app.get("/", async (req, res) => {
   }
 });
 
+// Start the server
 app.listen(port, () => {
-  console.log(`App listening at port ${port}`);
+  console.log(`App listening at http://localhost:${port}`);
 });
